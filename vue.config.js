@@ -16,14 +16,16 @@ module.exports = {
             warnings: false,
             errors: true
         },
-        proxy: {
-            ['/api']: {
-                target: 'http://localhost:22222',
-                changeOrigin: true,
-                pathRewrite: {
-                    ['^/api']: ''
+        proxy: process.env.NODE_ENV === 'production'
+            ? {} :
+            {
+                ['/api']: {
+                    target: 'http://localhost:22222',
+                    changeOrigin: true,
+                    pathRewrite: {
+                        ['^/api']: ''
+                    }
                 }
-            }
-        },
+            },
     }
 }
