@@ -12,7 +12,7 @@
           <el-button @click="onSubmit" type="primary">查询</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button @click="addUser" type="primary">新增用户</el-button>
+          <el-button @click="addUser" type="primary">添加教师</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -73,7 +73,7 @@
     <el-dialog
       :visible.sync="addUserDialog"
       custom-class="user-dialog"
-      title="新增教师"
+      title="添加教师"
     >
       <el-form ref="userForm" :model="userInfo">
         <el-form-item label="用户名" label-width="80px" prop="username">

@@ -32,6 +32,15 @@ const routes = [
         component: () => import("@/views/error/index.vue"),
       },
       {
+        path: `http://10.251.253.71:8080/`,
+        name: "http://10.251.253.71:8080/",
+        hidden: false,
+        meta: {
+          title: "官方网站",
+          icon: "s-home",
+        },
+      },
+      {
         path: "course",
         name: "Course",
         hidden: false,
@@ -81,6 +90,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 

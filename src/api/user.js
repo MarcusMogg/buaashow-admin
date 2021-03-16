@@ -32,3 +32,10 @@ export const del = (data) => {
         method: 'delete',
     })
 }
+
+export const testAdmin = () => {
+    return service({
+        url: `/test/admin`,
+        method: 'post',
+    })
+}

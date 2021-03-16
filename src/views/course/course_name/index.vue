@@ -60,7 +60,6 @@ export default {
   components: {},
   async mounted() {
     const res = await cn.getAll();
-    console.log(res);
     this.tableData = res.data.map((x) => {
       return {
         name: x,

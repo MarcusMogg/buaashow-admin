@@ -80,6 +80,7 @@
 
 <script>
 import Aside from "@/views/layout/aside";
+import { testAdmin } from "@/api/user.js";
 export default {
   name: "Layout",
   data() {
@@ -127,7 +128,8 @@ export default {
       return this.$route.matched;
     },
   },
-  mounted() {
+  async mounted() {
+    await testAdmin();
     let screenWidth = document.body.clientWidth;
     if (screenWidth < 1000) {
       this.isMobile = true;

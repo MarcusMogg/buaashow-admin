@@ -8,7 +8,6 @@ export const getAll = () => {
 }
 
 export const add = (data) => {
-    console.log(data);
     return service({
         url: `/coursename/${data}`,
         method: 'post',
