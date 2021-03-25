@@ -2,9 +2,7 @@
 
 module.exports = {
     // 基础配置 详情看文档
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '/admin/'
-        : '/',
+    publicPath: '/admin/',
     outputDir: 'dist',
     assetsDir: 'static',
     lintOnSave: process.env.NODE_ENV === 'development',
