@@ -32,30 +32,47 @@
       </el-table-column>
       <el-table-column label="操作" min-width="150">
         <template slot-scope="scope">
-          <el-popover placement="top" width="160" v-model="scope.row.visible">
-            <p>确定要删除此用户吗</p>
-            <div style="text-align: right; margin: 0">
+          <div style="display: inline">
+            <el-popover placement="top" width="160" v-model="scope.row.visible">
+              <p>确定要删除此用户吗</p>
+              <div style="text-align: right; margin: 0">
+                <el-button
+                  size="mini"
+                  type="text"
+                  @click="scope.row.visible = false"
+                  >取消</el-button
+                >
+                <el-button
+                  type="primary"
+                  size="mini"
+                  @click="deleteUser(scope.row)"
+                  >确定</el-button
+                >
+              </div>
               <el-button
-                size="mini"
-                type="text"
-                @click="scope.row.visible = false"
-                >取消</el-button
+                type="danger"
+                icon="el-icon-delete"
+                size="small"
+                slot="reference"
+                >删除</el-button
               >
+            </el-popover>
+          </div>
+          <div style="margin-left: 10px; display: inline">
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="重置密码为6个6"
+              placement="right-start"
+            >
               <el-button
                 type="primary"
-                size="mini"
-                @click="deleteUser(scope.row)"
-                >确定</el-button
+                size="small"
+                @click="resetP(scope.row.id)"
+                >重置密码</el-button
               >
-            </div>
-            <el-button
-              type="danger"
-              icon="el-icon-delete"
-              size="small"
-              slot="reference"
-              >删除</el-button
-            >
-          </el-popover>
+            </el-tooltip>
+          </div>
         </template>
       </el-table-column>
     </el-table>
@@ -77,10 +94,16 @@
     >
       <el-form ref="userForm" :model="userInfo">
         <el-form-item label="用户名" label-width="80px" prop="username">
-          <el-input v-model="userInfo.account"></el-input>
+          <el-input
+            v-model="userInfo.account"
+            placeholder="用户名长度应大于四个字符"
+          ></el-input>
         </el-form-item>
         <el-form-item label="密码" label-width="80px" prop="password">
-          <el-input v-model="userInfo.password"></el-input>
+          <el-input
+            v-model="userInfo.password"
+            placeholder="用户密码长度应为4-16个ASCII字符"
+          ></el-input>
         </el-form-item>
       </el-form>
       <div class="dialog-footer" slot="footer">
@@ -118,7 +141,7 @@ export default {
   computed: {},
   methods: {
     async getTableData() {
-      const res = await user.infoList(this.page, this.searchInfo.account);
+      const res = await user.infoList(this.page, this.searchInfo.account, 2);
       if (res.code === 200) {
         this.total = res.data.tot;
         this.tableData = res.data.users;
@@ -158,6 +181,9 @@ export default {
     handleCurrentChange(val) {
       this.page = val;
       this.getTableData();
+    },
+    async resetP(account) {
+      await user.resetPassword(account);
     },
   },
   async mounted() {

@@ -16,11 +16,12 @@ export const createTeacher = (data) => {
     })
 }
 
-export const infoList = (page, account) => {
+export const infoList = (page, account, tp) => {
     return service({
         url: "/user/infolist?" + querystring.stringify({
             page: page,
-            account: account
+            account: account,
+            type: tp,
         }),
         method: 'get',
     })
@@ -36,6 +37,13 @@ export const del = (data) => {
 export const testAdmin = () => {
     return service({
         url: `/test/admin`,
+        method: 'post',
+    })
+}
+
+export const resetPassword = (account) => {
+    return service({
+        url: `/user/reset/${account}`,
         method: 'post',
     })
 }

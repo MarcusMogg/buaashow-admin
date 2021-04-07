@@ -21,3 +21,11 @@ export const deleteTerm = (id) => {
         method: 'delete',
     })
 }
+
+export const updateTerm = (data) => {
+    return service({
+        url: `/terms/${data.tid}`,
+        method: 'post',
+        data: data,
+    })
+}

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "User",
+  name: "Course",
 };
 </script>
 <style lang="scss"></style>

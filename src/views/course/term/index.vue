@@ -28,10 +28,17 @@
             type="danger"
             >删除</el-button
           >
+          <el-button
+            @click="updateTermDialog(scope.row)"
+            icon="el-icon-edit"
+            size="small"
+            type="primary"
+            >修改</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
-    <!-- 新增角色弹窗 -->
+    <!-- 新增Term弹窗 -->
     <el-dialog :title="dialogTitle" :visible.sync="dialogFormVisible">
       <el-form :model="form" label-width="120px">
         <el-form-item label=" 学期名" prop="tname">
@@ -63,6 +70,38 @@
         <el-button @click="enterDialog" type="primary">确 定</el-button>
       </div>
     </el-dialog>
+    <!-- 修改Term弹窗 -->
+    <el-dialog :title="upDialogTitle" :visible.sync="upDialogFormVisible">
+      <el-form :model="upform" label-width="120px">
+        <el-form-item label=" 学期名" prop="tname">
+          <el-input
+            autocomplete="off"
+            v-model="upform.tname"
+            style="width: 60%"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="开始时间" prop="tbegin">
+          <el-date-picker
+            v-model="upform.tbegin"
+            type="date"
+            placeholder="选择日期"
+          >
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="结束时间" prop="tend">
+          <el-date-picker
+            v-model="upform.tend"
+            type="date"
+            placeholder="选择日期"
+          >
+          </el-date-picker>
+        </el-form-item>
+      </el-form>
+      <div class="dialog-footer" slot="footer">
+        <el-button @click="upDialogFormVisible = false">取 消</el-button>
+        <el-button @click="updateTerm" type="primary">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -76,7 +115,15 @@ export default {
     return {
       dialogTitle: "新增学期",
       dialogFormVisible: false,
+      upDialogTitle: "修改学期",
+      upDialogFormVisible: false,
       form: {
+        tname: "",
+        tbegin: "",
+        tend: "",
+      },
+      upform: {
+        tid: 0,
         tname: "",
         tbegin: "",
         tend: "",
@@ -115,6 +162,22 @@ export default {
       if (res.code === 200) {
         this.tableData.splice(index, 1);
       }
+    },
+    updateTermDialog(data) {
+      console.log(data);
+      this.upform.tid = data.tid;
+      this.upform.tname = data.tname;
+      this.upform.tbegin = data.tbegin;
+      this.upform.tend = data.tend;
+      this.upDialogFormVisible = true;
+    },
+    async updateTerm() {
+      this.upform.tbegin = formatTimeToStr(this.upform.tbegin, "yyyy-MM-dd");
+      this.upform.tend = formatTimeToStr(this.upform.tend, "yyyy-MM-dd");
+      await term.updateTerm(this.upform);
+      const res = await term.getTerms();
+      this.tableData = res.data;
+      this.upDialogFormVisible = false;
     },
   },
 };

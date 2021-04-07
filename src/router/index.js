@@ -32,8 +32,8 @@ const routes = [
         component: () => import("@/views/error/index.vue"),
       },
       {
-        path: `http://10.251.253.71:8080/`,
-        name: "http://10.251.253.71:8080/",
+        path: `http://10.251.253.71/`,
+        name: "http://10.251.253.71/",
         hidden: false,
         meta: {
           title: "官方网站",
@@ -70,19 +70,50 @@ const routes = [
             },
             component: () => import("@/views/course/course_name/index.vue"),
           },
+        ],
+      }, {
+        path: "user",
+        name: "User",
+        hidden: false,
+        meta: {
+          title: "用户管理管理",
+          icon: "s-custom",
+        },
+        component: () => import("@/views/user/index.vue"),
+        children: [
           {
-            path: "user",
-            name: "管理用户",
+            path: "teacher",
+            name: "教师管理",
             hidden: false,
             meta: {
-              title: "管理用户",
-              icon: "s-custom",
+              title: "教师管理",
+              icon: "user-solid",
             },
-            component: () => import("@/views/course/user/user.vue"),
+            component: () => import("@/views/user/teacher/user.vue"),
+          },
+          {
+            path: "student",
+            name: "学生管理",
+            hidden: false,
+            meta: {
+              title: "学生管理",
+              icon: "user",
+            },
+            component: () => import("@/views/user/student/user.vue"),
           },
         ],
-      }]
+      }, {
+        path: "system",
+        name: "system",
+        hidden: false,
+        meta: {
+          title: "服务器状态",
+          icon: "cloudy",
+        },
+        component: () => import("@/views/system/state.vue"),
+      },],
   },
+
   {
     path: '*',
     redirect: '/layout/404'
