@@ -76,7 +76,7 @@ const routes = [
         name: "User",
         hidden: false,
         meta: {
-          title: "用户管理管理",
+          title: "用户管理",
           icon: "s-custom",
         },
         component: () => import("@/views/user/index.vue"),

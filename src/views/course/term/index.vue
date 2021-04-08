@@ -151,8 +151,8 @@ export default {
           tend: "",
         };
         this.tableData.push(res.data);
-        this.closeDialog();
       }
+      this.closeDialog();
     },
     add() {
       this.dialogFormVisible = true;
