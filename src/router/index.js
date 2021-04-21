@@ -41,37 +41,36 @@ const routes = [
         },
       },
       {
-        path: "course",
-        name: "Course",
+        path: "dashboard",
+        name: "仪表盘",
         hidden: false,
         meta: {
-          title: "课程管理",
-          icon: "s-order",
+          title: "仪表盘",
+          icon: "setting",
         },
-        component: () => import("@/views/course/index.vue"),
-        children: [
-          {
-            path: "term",
-            name: "学期管理",
-            hidden: false,
-            meta: {
-              title: "学期管理",
-              icon: "date",
-            },
-            component: () => import("@/views/course/term/index.vue"),
-          },
-          {
-            path: "coursename",
-            name: "课程管理",
-            hidden: false,
-            meta: {
-              title: "课程列表",
-              icon: "notebook-2",
-            },
-            component: () => import("@/views/course/course_name/index.vue"),
-          },
-        ],
-      }, {
+        component: () => import("@/views/dashboard/index.vue"),
+      },
+      {
+        path: "term",
+        name: "学期管理",
+        hidden: false,
+        meta: {
+          title: "学期管理",
+          icon: "date",
+        },
+        component: () => import("@/views/course/term/index.vue"),
+      },
+      {
+        path: "coursename",
+        name: "课程类别",
+        hidden: false,
+        meta: {
+          title: "课程类别",
+          icon: "notebook-2",
+        },
+        component: () => import("@/views/course/course_name/index.vue"),
+      },
+      {
         path: "user",
         name: "User",
         hidden: false,
@@ -113,7 +112,10 @@ const routes = [
         component: () => import("@/views/system/state.vue"),
       },],
   },
-
+  {
+    path: '/',
+    redirect: '/layout/dashboard'
+  },
   {
     path: '*',
     redirect: '/layout/404'

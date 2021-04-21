@@ -570,22 +570,13 @@ li {
             background: $bg-aside;
             text-align: center;
 
-            .logoimg {
-                width: $width-aside-img;
-                height: $height-aside-img;
-                vertical-align: middle;
-                background: #fff;
-                border-radius: 50%;
-                padding: 3px;
-            }
-
             .tit-text {
                 display: inline-block;
                 color: #fff;
                 font-weight: 600;
                 font-size: 20px;
-                vertical-align: middle;
-                padding-left: 10px;
+                vertical-align: baseline;
+                //padding-left: 10px;
             }
         }
 

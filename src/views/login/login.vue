@@ -62,7 +62,7 @@ export default {
       const res = await login(this.loginForm);
       if (res.code === 200) {
         localStorage["token"] = res.data.token;
-        this.$router.push({ name: "Layout" });
+        this.$router.push("/");
       }
     },
   },
