@@ -48,6 +48,23 @@
                     >
                   </el-breadcrumb>
                 </el-col>
+                <el-col :xs="12" :lg="9" :md="9" :sm="14" :xl="9"
+                  ><div class="fl-right right-box">
+                    <el-dropdown>
+                      <span class="header-avatar">
+                        <span style="margin-left: 5px">ADMIN</span>
+                        <i class="el-icon-arrow-down"></i>
+                      </span>
+                      <el-dropdown-menu class="dropdown-group" slot="dropdown">
+                        <el-dropdown-item
+                          @click.native="LoginOut"
+                          icon="el-icon-table-lamp"
+                          >登 出</el-dropdown-item
+                        >
+                      </el-dropdown-menu>
+                    </el-dropdown>
+                  </div>
+                </el-col>
               </el-header>
             </el-row>
           </div>
@@ -117,6 +134,10 @@ export default {
       this.isShadowBg = !this.isShadowBg;
       this.isSider = !!this.isCollapse;
       this.totalCollapse();
+    },
+    LoginOut() {
+      localStorage.removeItem("token");
+      this.reload();
     },
   },
   computed: {

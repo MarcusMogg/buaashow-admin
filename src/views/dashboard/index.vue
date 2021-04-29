@@ -41,7 +41,7 @@
             <a
               style="color: #409eff"
               target="view_window"
-              href="https://www.yuque.com/sd6csu/ngd5zk/bcugiw"
+              :href="baseUrl + '/courses/course'"
               >了解详情</a
             >
           </div>
@@ -52,7 +52,7 @@
             <a
               style="color: #409eff"
               target="view_window"
-              href="https://www.yuque.com/sd6csu/ngd5zk/bcugiw"
+              :href="baseUrl + '/courses/course'"
               >了解详情</a
             >
           </div>
@@ -84,10 +84,13 @@ export default {
   data() {
     return {
       state: {},
+      baseUrl: "",
     };
   },
   created() {
     this.reload();
+    this.baseUrl = window.location.origin;
+    //console.log(this.baseUrl);
   },
   beforeDestroy() {
     clearInterval(this.timer);

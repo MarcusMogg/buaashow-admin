@@ -47,3 +47,10 @@ export const resetPassword = (account) => {
         method: 'post',
     })
 }
+export const captcha = (data) => {
+    return service({
+        url: "/user/captcha",
+        method: 'get',
+        data: data
+    })
+}
