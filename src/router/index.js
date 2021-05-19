@@ -32,8 +32,8 @@ const routes = [
         component: () => import("@/views/error/index.vue"),
       },
       {
-        path: `http://10.251.253.71/`,
-        name: "http://10.251.253.71/",
+        path: `xxx`,
+        name: "homepage",
         hidden: false,
         meta: {
           title: "官方网站",

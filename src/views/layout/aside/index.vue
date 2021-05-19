@@ -52,7 +52,12 @@ export default {
           }
         });
       if (index === this.$route.name) return;
-      if (index.indexOf("http://") > -1 || index.indexOf("https://") > -1) {
+      if (index === "homepage") {
+        window.open(window.location.origin);
+      } else if (
+        index.indexOf("http://") > -1 ||
+        index.indexOf("https://") > -1
+      ) {
         window.open(index);
       } else {
         this.$router.push({ name: index, query, params });
