@@ -45,7 +45,7 @@ const routes = [
         name: "仪表盘",
         hidden: false,
         meta: {
-          title: "仪表盘",
+          title: "作品统计",
           icon: "setting",
         },
         component: () => import("@/views/dashboard/index.vue"),
